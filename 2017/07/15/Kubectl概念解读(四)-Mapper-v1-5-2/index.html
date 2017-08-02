@@ -1,4 +1,100 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Kubectl概念解读(四)-Mapper-v1.5.2 | fankangbest</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Kubectl概念解读(四)-Mapper-v1.5.2</h1><a id="logo" href="/.">fankangbest</a><p class="description">多听，少说，接受每一个人的责难，但是保留自己的最后裁决。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Kubectl概念解读(四)-Mapper-v1.5.2</h1><div class="post-meta">Jul 15, 2017<span> | </span><span class="category"><a href="/categories/容器虚拟化/">容器虚拟化</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h2 id="什么是Mapper"><a href="#什么是Mapper" class="headerlink" title="什么是Mapper"></a>什么是Mapper</h2><p>这里的Mapper是指kubectl中的Mapper，是对ObjectTyper, RESTMapper, ClientMapper和Decoder的封装。Mapper定义在/pkg/kubectl/resource/mapper.go中：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Mapper <span class="keyword">struct</span> &#123;</div><div class="line">	runtime.ObjectTyper</div><div class="line">	meta.RESTMapper</div><div class="line">	<span class="comment">//***定义在/pkg/kubectl/resource/interfaces.go中***//</span></div><div class="line">	<span class="comment">//***ClientMapper可以根据config和mapping通过调用ClientForMapping()生成RESTClient***//</span></div><div class="line">	ClientMapper</div><div class="line">	runtime.Decoder</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kubectl概念解读(四)-Mapper-v1.5.2 | fankangbest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="什么是Mapper这里的Mapper是指kubectl中的Mapper，是对ObjectTyper, RESTMapper, ClientMapper和Decoder的封装。Mapper定义在/pkg/kubectl/resource/mapper.go中：12345678type Mapper struct &amp;#123;	runtime.ObjectTyper	meta.RESTMapper	/">
+<meta name="keywords" content="kubernetes,kubernetes-v1.5.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubectl概念解读(四)-Mapper-v1.5.2">
+<meta property="og:url" content="http://fankangbest.coding.me/blog/2017/07/15/Kubectl概念解读(四)-Mapper-v1-5-2/index.html">
+<meta property="og:site_name" content="fankangbest">
+<meta property="og:description" content="什么是Mapper这里的Mapper是指kubectl中的Mapper，是对ObjectTyper, RESTMapper, ClientMapper和Decoder的封装。Mapper定义在/pkg/kubectl/resource/mapper.go中：12345678type Mapper struct &amp;#123;	runtime.ObjectTyper	meta.RESTMapper	/">
+<meta property="og:updated_time" content="2017-08-02T05:28:53.385Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kubectl概念解读(四)-Mapper-v1.5.2">
+<meta name="twitter:description" content="什么是Mapper这里的Mapper是指kubectl中的Mapper，是对ObjectTyper, RESTMapper, ClientMapper和Decoder的封装。Mapper定义在/pkg/kubectl/resource/mapper.go中：12345678type Mapper struct &amp;#123;	runtime.ObjectTyper	meta.RESTMapper	/">
+  
+    <link rel="alternate" href="/atom.xml" title="fankangbest" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">fankangbest</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">多听，少说，接受每一个人的责难，但是保留自己的最后裁决。</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fankangbest.coding.me/blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Kubectl概念解读(四)-Mapper-v1-5-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/15/Kubectl概念解读(四)-Mapper-v1-5-2/" class="article-date">
+  <time datetime="2017-07-15T12:51:16.000Z" itemprop="datePublished">2017-07-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/容器虚拟化/">容器虚拟化</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kubectl概念解读(四)-Mapper-v1.5.2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是Mapper"><a href="#什么是Mapper" class="headerlink" title="什么是Mapper"></a>什么是Mapper</h2><p>这里的Mapper是指kubectl中的Mapper，是对ObjectTyper, RESTMapper, ClientMapper和Decoder的封装。Mapper定义在/pkg/kubectl/resource/mapper.go中：<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">type</span> Mapper <span class="keyword">struct</span> &#123;</div><div class="line">	runtime.ObjectTyper</div><div class="line">	meta.RESTMapper</div><div class="line">	<span class="comment">//***定义在/pkg/kubectl/resource/interfaces.go中***//</span></div><div class="line">	<span class="comment">//***ClientMapper可以根据config和mapping通过调用ClientForMapping()生成RESTClient***//</span></div><div class="line">	ClientMapper</div><div class="line">	runtime.Decoder</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>由于Mapper嵌入了很多涉及其他模块的结构体，所以我们这次的分析仅分析到这些对象是如何生成的，细节将放到其他模块的分析中。</p>
 <h2 id="生成Mapper"><a href="#生成Mapper" class="headerlink" title="生成Mapper"></a>生成Mapper</h2><p>一切得从/pkg/kubectl/cmd/util/factory.go的NewBuilder()方法说起。<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="params">(f *factory)</span> <span class="title">NewBuilder</span><span class="params">()</span> *<span class="title">resource</span>.<span class="title">Builder</span></span> &#123;</div><div class="line">	mapper, typer := f.Object()</div><div class="line">	<span class="comment">//***此处有kubectl mapper的各项参数的定义***//</span></div><div class="line">	<span class="comment">//***其中Decoder为f.Decoder(true)***//</span></div><div class="line">	<span class="keyword">return</span> resource.NewBuilder(mapper, typer, resource.ClientMapperFunc(f.ClientForMapping), f.Decoder(<span class="literal">true</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>再来看/pkg/kubectl/ressourcce/builder.go中的NewBuilder():<br><figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// NewBuilder creates a builder that operates on generic objects.</span></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewBuilder</span><span class="params">(mapper meta.RESTMapper, typer runtime.ObjectTyper, clientMapper ClientMapper, decoder runtime.Decoder)</span> *<span class="title">Builder</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> &amp;Builder&#123;</div><div class="line">		<span class="comment">//***把RESTMapper, ObjectTyper, ClientMapper, Decoder封装成kubectl的Mapper***//</span></div><div class="line">		mapper:        &amp;Mapper&#123;typer, mapper, clientMapper, decoder&#125;,</div><div class="line">		requireObject: <span class="literal">true</span>,</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -17,4 +113,146 @@
 <p>因为传入的toInternal为true，所以Decoder为api.Codecs.UniversalDecoder()。这里不再向下分析，只需知道该Decoder可以把相关版本的对象转换成内部版本的对象。</p>
 <h2 id="RESTMapping"><a href="#RESTMapping" class="headerlink" title="RESTMapping()"></a>RESTMapping()</h2><p>调用的RESTMapper的RESTMapping()。RESTMapper的RESTMapping()前面已经介绍过。</p>
 <h2 id="ClientForMapping"><a href="#ClientForMapping" class="headerlink" title="ClientForMapping()"></a>ClientForMapping()</h2><p>调用的就是f.ClientForMapping()，前面已经介绍过。</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="https://fankangbest.github.com/2017/07/15/Kubectl概念解读(四)-Mapper-v1-5-2/" data-id="cj5ukt06r000c38qs82zjmm1n" class="article-share-link">分享</a><div class="tags"><a href="/tags/kubernetes/">kubernetes</a><a href="/tags/kubernetes-v1-5-2/">kubernetes-v1.5.2</a></div><div class="post-nav"><a href="/2017/07/19/Kubectl概念解读(五)-Printer-v1-5-2/" class="pre">Kubectl概念解读(五)-Printer-v1.5.2</a><a href="/2017/07/15/Kubectl概念解读(三)-Info,Result,Helper-v1-5-2/" class="next">Kubectl概念解读(三)-Info,Result,Helper-v1.5.2</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://fankangbest.github.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/容器虚拟化/">容器虚拟化</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/kubernetes/" style="font-size: 15px;">kubernetes</a> <a href="/tags/kubernetes-v1-5-2/" style="font-size: 15px;">kubernetes-v1.5.2</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/01/apimachinery机制解读(二)-GroupMetaFactory-v1-5-2/">apimachinery机制解读(二)-GroupMetaFactory-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/31/apimachinery机制解读(一)-APIRegistrationManager-v1-5-2/">apimachinery机制解读(一)-APIRegistrationManager-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/30/Scheme机制解读(三)-Cloner-v1-5-2/">Scheme机制解读(三)-Cloner-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/Scheme机制解读(二)-Converter-v1-5-2/">Scheme机制解读(二)-Converter-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/Scheme机制解读(一)-Scheme-v1-5-2/">Scheme机制解读(一)-Scheme-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/RESTMapper解读(三)-其他RESTMapper-v1-5-2/">RESTMapper解读(三)-其他RESTMapper-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/23/RESTMapper解读(二)-管理DefaultRESTMapper-v1-5-2/">RESTMapper解读(二)-管理DefaultRESTMapper-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/RESTMapper解读(一)-DefaultRESTMapper-v1-5-2/">RESTMapper解读(一)-DefaultRESTMapper-v1.5.2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/Kubectl概念解读(六)-Describer-v1-5-2/">Kubectl概念解读(六)-Describer-v1.5.2</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/fankangbest" title="myGithub" target="_blank">myGithub</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">fankangbest.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fankangbest.coding.me/blog/2017/07/15/Kubectl概念解读(四)-Mapper-v1-5-2/" data-id="cj5ul2rmv000c7wqsyk26a2nr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes/">kubernetes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kubernetes-v1-5-2/">kubernetes-v1.5.2</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/19/Kubectl概念解读(五)-Printer-v1-5-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Kubectl概念解读(五)-Printer-v1.5.2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/15/Kubectl概念解读(三)-Info,Result,Helper-v1-5-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kubectl概念解读(三)-Info,Result,Helper-v1.5.2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/容器虚拟化/">容器虚拟化</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes/">kubernetes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kubernetes-v1-5-2/">kubernetes-v1.5.2</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/kubernetes/" style="font-size: 10px;">kubernetes</a> <a href="/tags/kubernetes-v1-5-2/" style="font-size: 10px;">kubernetes-v1.5.2</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/02/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/01/apimachinery机制解读(二)-GroupMetaFactory-v1-5-2/">apimachinery机制解读(二)-GroupMetaFactory-v1.5.2</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/31/apimachinery机制解读(一)-APIRegistrationManager-v1-5-2/">apimachinery机制解读(一)-APIRegistrationManager-v1.5.2</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/30/Scheme机制解读(三)-Cloner-v1-5-2/">Scheme机制解读(三)-Cloner-v1.5.2</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/29/Scheme机制解读(二)-Converter-v1-5-2/">Scheme机制解读(二)-Converter-v1.5.2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 KangFAN<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
